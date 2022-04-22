@@ -159,7 +159,8 @@ function diag_lines() {
 // https://p5js.org/examples/structure-recursion.html
 function recursiverecursion() {
     noStroke();
-    noLoop();
+    background(120,12)
+    noLoop(); // also makes rendering less pixeled
 
     recursiveCircle(width/2, 280, 6);
 }
@@ -178,6 +179,93 @@ function recursiveCircle(x, radius, level) {
     }
 }
 
+// ---------- Conways GoL ------------------------------
+function conwaysGoL() {
+    // noLoop();
+    noStroke();
+    frameRate(20)
+
+    let w,h,x,y;
+    w=Math.max(height,width)*10/Math.min(height,width);
+    h=w;
+    x=-w;
+    y=x;
+    
+    console.log(width);
+    console.log(height);
+    
+    let xs=((width+2*w)/w);
+    let ys=((height+2*h)/h);
+    let tot_sqrs=Math.ceil(xs*ys);
+    console.log(tot_sqrs);
+
+    let consarr=Array.from({length: tot_sqrs}, () => ToF());
+    colorConsArray(consarr,x,y,w,h);
+    
+    // for (let i=0;i<100;i++){
+    //     consarr=consarr.map(nextGen);
+    //     colorConsArray(consarr,x,y,w,h);
+    //     background(255);
+    // }
+
+}
+function ToF() {
+    if (Math.random() > 0.5) {
+        return 0;
+    } else {
+        return 1;
+    }
+};
+function colorConsArray(array,x,y,w,h) {
+    let hovercolor=false;
+    for (let i=0; i<array.length;i++) {
+        // let c = color(Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255) // colors
+        let c = color(array[i]*255); // black/white
+        // let c = color(array[i]*255*Math.random()*10,array[i]*255*255); // blizzard
+
+        fill(c); // black/white
+        if ((x<mouseX && mouseX<x+w*2) && (y<mouseY && mouseY<y+h*2) && hovercolor) {
+         fill(255,153,255)   
+        }
+            rect(x,y,w,h);
+            if (x>width) {
+                x=0;
+                y+=h;
+            } else {
+                x+=w;
+            }
+        // y++;
+    }
+}
+
+function nextGen(value, index, array){
+    let sumd=[
+            array[index-xs-1],
+            array[index-xs],
+            array[index-xs+1],
+            array[index-1],
+            array[index+1],
+            array[index+xs-1],
+            array[index+xs],
+            array[index+xs+1],
+        ].reduce((a,b) => a+b,0);
+        if (value > 0) {
+            // dead cell
+            if (sumd == 3) {return 1} else {return 0}
+        } else {
+            // live cell
+            if (!(sumd == 2 | sumd == 3)) {
+                return 0
+            } else {
+                return 1
+            }
+        }
+}  
+
+// -x-1 | -x | -x+1 
+//  -1  | ** |  +1
+// +x-1 | +x | +x+1
+
 
 
 // setup and draw -------------
@@ -191,12 +279,13 @@ function draw() {
     // fading_ball();
     // diag_lines();
     // hori_vert_lines();
-    recursiverecursion();
+    // recursiverecursion();
+    conwaysGoL();
 
 }
 
 function setup() {
-    // frameRate(30);
+    // frameRate(1);
     // noLoop(); // stops draw from re-running, can combine with redraw() for funstuff
     canvasFitter();
 }
