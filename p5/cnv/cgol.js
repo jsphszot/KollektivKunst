@@ -1,18 +1,5 @@
 // ---------- Conways GoL ------------------------------
-// function conwaysGoL(consarr) {
 
-    
-
-//     // for (let i=0;i<100;i++){
-//     // while (true) {
-
-//         consarr=consarr.map(nextGen);
-//         // console.log(consarr)
-//         colorConsArray(consarr,x,y,w,h);
-//     //     background(255);
-//     // }
-
-// }
 function ToF() {
     if (Math.random() > 0.8) {
         return 0;
@@ -21,23 +8,26 @@ function ToF() {
     }
 };
 function colorConsArray(array,x,y,w,h) {
-    let hovercolor=false;
+
     for (let i=0; i<array.length;i++) {
         // let c = color(Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255) // colors
         let c = color(array[i]*255); // black/white
         // let c = color(array[i]*255*Math.random()*10,array[i]*255*255); // blizzard
 
-        fill(c); // black/white
-        if ((x<mouseX && mouseX<x+w*2) && (y<mouseY && mouseY<y+h*2) && hovercolor) {
-         fill(255,153,255)   
+        fill(c);
+        // if (ToF()==0) {
+        //     // fill(255,153,255)   
+        //     fill(c); // black/white
+        // } else {
+        //     fill(255)
+        // }
+        rect(x,y,w,h);
+        if (x>width) {
+            x=0;
+            y+=h;
+        } else {
+            x+=w;
         }
-            rect(x,y,w,h);
-            if (x>width) {
-                x=0;
-                y+=h;
-            } else {
-                x+=w;
-            }
         // y++;
     }
 }
@@ -80,7 +70,8 @@ let xs, ys,tot_sqrs,ws, consarr;
 function setup() {
     canvasFitter();
 
-    w=Math.max(height,width)*10/Math.min(height,width);
+    // w=Math.max(height,width)*10/Math.min(height,width);
+    w=Math.max(height,width)/Math.min(height,width)*6;
     h=w;
     x=-w;
     y=x;
@@ -95,14 +86,17 @@ function setup() {
 
 
 function draw() {
-    // noLoop();
+    noStroke();
     // frameRate(5);
     consarr=consarr.map(nextGen);
     colorConsArray(consarr,x,y,w,h);
 }
 
 
-
+function mouseClicked() {
+    setup();
+    // draw();
+}
 
 
 function windowResized() {
