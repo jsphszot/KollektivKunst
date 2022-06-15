@@ -112,17 +112,17 @@ html {
 /* MARQUEE */
 /* https://www.w3docs.com/snippets/css/how-to-have-the-marquee-effect-without-using-the-marquee-tag-with-css-javascript-and-jquery.html */
 
-/* change speed and position here */
 .marquee {
-    /* z-index: 0; */
+    z-index: 100;
     /* overflow and width keep it from srolling infinitely to the right; */
     overflow: hidden;
     width: 100vw;
     /* position absolute forces it to be where we want it (Xvh from bottom) */
     position: absolute;
+    /* change position here */
     bottom: 0vh;
     
-    --offset: 20vw;
+    --offset: 20vw; 
     --move-initial: calc(-25% + var(--offset));
     --move-final: calc(-50% + var(--offset));
 }
@@ -134,7 +134,8 @@ html {
     display: flex;
     position: relative;
     transform: translate3d(var(--move-initial), 0, 0);
-    animation: marquee 30s linear infinite;
+        /* speed here */
+    animation: marquee 150s linear infinite;
 }
 
 .marquee__inner:hover {
@@ -143,6 +144,7 @@ html {
 }
 .marquee a {
     text-decoration: none;
+    font-size: 4vh;
 }
 .marquee span {
     color: white;
