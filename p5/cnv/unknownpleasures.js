@@ -55,11 +55,14 @@ function noisyLine(start, end, level, amp){
     var yoff = 0;
     beginShape();
     // noFill();
-    fill(0);
+    //white lines over black
+    fill(0); // black fill
+    stroke(255); // white lines
+    // lines to chora mailaxia colors 
+    stroke(Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150);
+    strokeWeight(4); // between 1-5 looks good
+    // chora mailaxia filled colors over black
     fill(Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150);
-    // stroke(Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150);
-    stroke(255);
-    strokeWeight(1);
     // var wtg = plusorminus()
     for (let x=start; x<end; x++){
         var d = 1-abs((x-width/2)/(width/2));
