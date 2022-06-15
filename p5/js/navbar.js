@@ -3,6 +3,7 @@ var navbar = document.getElementById("navbar");
 var body = document.querySelector("body");
 var nav_ul = document.querySelector("nav ul");
 var menu_li = document.getElementsByClassName("menu-li");
+var marquee = document.getElementsByClassName("marquee");
 
 
 // Control navbar ----
@@ -22,6 +23,7 @@ function OpenM() {
     navbar.style.height = "100vh";
     navbar.style.width = "100vw";
     
+    HideLoop(marquee);
     body.classList.add('stop-scrolling');
 
     ShowLoop(menu_li, d_style=false);
@@ -30,6 +32,9 @@ function CloseM(hide=true) {
     menu_button.textContent = "☰";
     navbar.style.height = "";
     body.classList.remove('stop-scrolling');
+
+    ShowLoop(marquee, d_style=false);
+    
 
     (hide === true) ? HideLoop(menu_li) : ShowLoop(menu_li);
 };
