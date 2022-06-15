@@ -8,19 +8,13 @@ function ToF() {
     }
 };
 function colorConsArray(array,x,y,w,h) {
-
     for (let i=0; i<array.length;i++) {
         // let c = color(Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255) // colors
-        let c = color(array[i]*255); // black/white
+        // let c = color(Math.random()*array[i]*255,Math.random()*array[i]*255,Math.random()*array[i]*255);  //black and grayscale
+        let c = color(Math.random()*array[i]*255,);  //black and grayscale
+        // let c = color(array[i]*255); // black/white
         // let c = color(array[i]*255*Math.random()*10,array[i]*255*255); // blizzard
-
         fill(c);
-        // if (ToF()==0) {
-        //     // fill(255,153,255)   
-        //     fill(c); // black/white
-        // } else {
-        //     fill(255)
-        // }
         rect(x,y,w,h);
         if (x>width) {
             x=0;
@@ -63,6 +57,43 @@ function nextGen(value, index, array){
         // return sumd;
 }  
 
+function innitArray() {
+
+    rpentomino = math.matrix([
+        [0,1,1],
+        [1,1,0],
+        [0,1,0],
+
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+  
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+        // [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
+
+    ]);
+
+    // console.log(xs);
+    // console.log(ys);
+    // console.log(rpentomino.resize([xs, ys]));
+    // console.log(rpentomino.size());
+    return math.flatten(rpentomino.resize([xs, ys]));
+}
 
 // setup and draw -------------
 let w,h,x,y, ol; // ol is outerlengyh
@@ -71,22 +102,27 @@ function setup() {
     canvasFitter();
 
     // w=Math.max(height,width)*10/Math.min(height,width);
+    // square's width
     w=Math.max(height,width)/Math.min(height,width)*6;
-    h=w;
-    x=-w;
-    y=x;
-    ol=3;
-    xs=Math.floor((width+ol*w)/w);
-    ys=Math.floor((height+ol*h)/h);
-    tot_sqrs=xs*ys;
-    ws=tot_sqrs/ys;
+    h=w; // squares height, = width
+    x=-w; // starting x
+    y=x; // starting y
+    ol=3; // extra w to add to col/row calc (how many hori/vert squares)
+    xs=Math.floor((width+ol*w)/w); // how many tot horizontal squares
+    ys=Math.floor((height+ol*h)/h); // how many tot vertical squares 
+    tot_sqrs=xs*ys; // game area
+    ws=tot_sqrs/ys; // same as xs, input to nextGen
     consarr=Array.from({length: tot_sqrs}, () => ToF());
+    // consarr=innitArray()._data;
+    // console.log(innitArray()._data)
+    // console.log(consarr);
     colorConsArray(consarr,x,y,w,h);
+    // innitArray();
 }
-
 
 function draw() {
     noStroke();
+    // noLoop();
     // frameRate(5);
     consarr=consarr.map(nextGen);
     colorConsArray(consarr,x,y,w,h);
