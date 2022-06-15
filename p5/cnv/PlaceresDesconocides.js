@@ -109,8 +109,8 @@ function noisyLines() {
 function colorSetter(howmany){
     var colorArray = [];
     for (let i = 0; i<howmany; i++) {
-        // colorArray.push([Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150]) // flor de jamaica
-        colorArray.push([Math.random()*255,Math.random()*255,Math.random()*255, Math.random()*150]) // gengibre
+        colorArray.push([Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150]) // flor de jamaica
+        // colorArray.push([Math.random()*255,Math.random()*255,Math.random()*255, Math.random()*150]) // gengibre
     }
     return colorArray;
 }
