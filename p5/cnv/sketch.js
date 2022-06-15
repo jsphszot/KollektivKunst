@@ -56,21 +56,20 @@ function setup_and_draw() {
 // bit slow reload (just noticeable), make j_circles smaller if needed
 // https://p5js.org/examples/structure-functions.html 
 let j_circles=500;
-function draw_targets(pulse=true, the_one=false) {
+function draw_targets(pulse=false, the_one=false) {
     background(51)
     if (pulse) {
         // redraw();
         drawTarget(width*0.25, height*0.4, 200);
         drawTarget(width*0.50, height*0.5, 300);
         drawTarget(width*0.75, height*0.3, 120);
+        // multiTarget(j_circles)
     } else {
         noLoop();
         if (the_one) {
             drawTarget(width*Math.random(), height*Math.random(), Math.max(width, height)*5)
         } else {
-            for (let j=0; j<j_circles; j++) {
-                drawTarget(width*Math.random(), height*Math.random(), Math.max(width, height)*Math.random()*0.2)
-            }
+            multiTarget(j_circles)
         }
     }
 }
@@ -83,6 +82,12 @@ function drawTarget(xloc, yloc, size, num=size/7) {
     for (let i=0; i<num; i++) {
         fill(i*Math.abs(grayvalues)/num);
         ellipse(xloc, yloc, size*(num-i)/num); //size-i*steps); 
+    }
+}
+
+function multiTarget(j_circles){
+    for (let j=0; j<j_circles; j++) {
+        drawTarget(width*Math.random(), height*Math.random(), Math.max(width, height)*Math.random()*0.2)
     }
 }
  
@@ -198,7 +203,7 @@ function eppillepti() {
     let ys=((height+2*h)/h);
     let tot_sqrs=Math.ceil(xs*ys);
     // let tot_sqrs=Math.ceil(Math.sqrt(xs*ys))**2;
-    console.log(tot_sqrs);
+    // console.log(tot_sqrs);
 
     let eppiarr=Array.from({length: tot_sqrs}, () => ToF());
     colorArray(eppiarr,x,y,w,h);
@@ -212,7 +217,7 @@ function ToF() {
     }
 };
 function colorArray(array,x,y,w,h) {
-    let hovercolor=false;
+    let hovercolor=true;
     for (let i=0; i<array.length;i++) {
         // let c = color(Math.random()*255, Math.random()*255, Math.random()*255, Math.random()*255) // colors
         // let c = color(array[i]*255); // black/white
@@ -247,12 +252,12 @@ function draw() {
     // coordinatesExample();
     // width_and_height();
     // setup_and_draw();  
-    // draw_targets(); // run together with fading ball, don't know why but it "smooths out" the balls jejeje
+    draw_targets(); // run together with fading ball, don't know why but it "smooths out" the balls jejeje
     // fading_ball();
     // diag_lines();
     // hori_vert_lines();
     // recursiverecursion();
-    eppillepti();
+    // eppillepti();
 
 }
 
@@ -266,3 +271,4 @@ function windowResized() {
     setup();
     draw();
 }
+
