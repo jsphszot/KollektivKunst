@@ -30,12 +30,11 @@ function OpenM() {
     navbar.style.height = "100vh";
     navbar.style.width = "100vw";
     
-    // console.log(menu_li.length);
-    // console.log(menu_button.style.height);
-    // menu_li.style.height = "20vh";
     menu_li.forEach(item => item.style.height = 95/menu_li.length + "vh"); // 95 al ojimetro pa sacar el navbar
     // menu_li.forEach(set_a);
-    nav_links.forEach(item =>  item.style.padding = 3*(menu_li.length-2)/menu_li.length+'vw 0');
+    nav_links.forEach(item => item.style.height = 95/menu_li.length + "vh"); // 95 al ojimetro pa sacar el navbar
+    // nav_links.forEach(item =>  item.style.padding = 3*(menu_li.length-2)/menu_li.length+'vw 0');
+    nav_links.forEach(item =>  item.style.padding = (95/menu_li.length-4)/2+"vh 0"); // minus font size
     
 
     HideLoop(marquee);
@@ -50,6 +49,9 @@ function CloseM(hide=true) {
 
 
     menu_li.forEach(item => item.style.height = "");//"10vh");
+    nav_links.forEach(item =>  item.style.padding = "");
+    nav_links.forEach(item =>  item.style.height = "");
+
 
     ShowLoop(marquee, d_style=false);
     
@@ -90,9 +92,10 @@ function fillNavbar(){
         config_array.navbar.forEach((navlink) => {
             nav_li = `
             <li class='menu-li'>
-            <a class='nav-links' href="${navlink.href}">${navlink.txt}</a>
-            </li>`;
-                nav_ul.innerHTML += nav_li;
+                <a class='nav-links' href="${navlink.href}">${navlink.txt}</a>
+            </li>
+            `;
+            nav_ul.innerHTML += nav_li;
             })
         }
         
