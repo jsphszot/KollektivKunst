@@ -93,10 +93,12 @@ html {
         margin: 0;
         display: none;
     }
-    /* #navbar a { */
-    .nav-links {
-        padding: 0vh 0;
-    }
+    /* .nav-links { */
+        /* font-size: 4vh; */
+        /* padding: 2.5vh 0; */
+        /* margin: 2vh 0; */
+        /* padding: 10vh 0; */
+    /* } */
     #menu-button {
         display: block;
         min-width: 55px;
