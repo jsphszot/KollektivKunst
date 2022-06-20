@@ -19,7 +19,9 @@ var ccclrs = colorSetter(500);
 
 function setup() {
     canvasFitter();
-    ypad = Math.max(height, width)*0.2; 
+    // ypad controls how many lines appear
+    // ypad = Math.max(height, width)*0.2; 
+    ypad = Math.min(height, width)*0.3; 
     xpad = 50;
 }
 function windowResized() {
