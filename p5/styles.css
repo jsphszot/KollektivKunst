@@ -42,7 +42,7 @@ html {
 }
 #navbar ul {
     /* margin: auto; */
-    /* padding: 0; */
+    /* padding-bottom: 5vh; */
     height: 100%;
     /* max-width: 70%; */
     display: flex;
@@ -87,6 +87,7 @@ html {
     }
     #navbar ul {
         display: block;
+        /* padding-bottom: 10vh; */
     }
     .menu-li {
         width: 100%;
