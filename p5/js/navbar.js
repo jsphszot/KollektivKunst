@@ -30,11 +30,18 @@ function OpenM() {
     navbar.style.height = "100vh";
     navbar.style.width = "100vw";
     
-    menu_li.forEach(item => item.style.height = 95/menu_li.length + "vh"); // 95 al ojimetro pa sacar el navbar
+    // console.log(menu_button.offsetHeight)
+    // console.log(navbar.offsetHeight)
+    // get menu button height, and include in calculation to get height for each menu item
+    var menu_minus_button_h = 100*(navbar.offsetHeight-menu_button.offsetHeight)/navbar.offsetHeight;
+    var menu_item_vh = menu_minus_button_h/(menu_li.length+0) + "vh";
+    // console.log(Math.round(menu_minus_button_h))
     // menu_li.forEach(set_a);
-    nav_links.forEach(item => item.style.height = 95/menu_li.length + "vh"); // 95 al ojimetro pa sacar el navbar
-    // nav_links.forEach(item =>  item.style.padding = 3*(menu_li.length-2)/menu_li.length+'vw 0');
-    nav_links.forEach(item =>  item.style.padding = (95/menu_li.length-4)/2+"vh 0"); // minus font size
+    menu_li.forEach(item => item.style.height = menu_item_vh);
+
+    nav_links.forEach(item => item.style.height = menu_item_vh);
+    nav_links.forEach(item =>  item.style.lineHeight = menu_item_vh); // V center text by making lineHeight == height
+    nav_links.forEach(item =>  item.style.padding = "0vh");
     
 
     HideLoop(marquee);
@@ -47,10 +54,10 @@ function CloseM(hide=true) {
     navbar.style.height = "";
     body.classList.remove('stop-scrolling');
 
-
     menu_li.forEach(item => item.style.height = "");//"10vh");
-    nav_links.forEach(item =>  item.style.padding = "");
     nav_links.forEach(item =>  item.style.height = "");
+    nav_links.forEach(item =>  item.style.lineHeight = "");
+    nav_links.forEach(item =>  item.style.padding = "");
 
 
     ShowLoop(marquee, d_style=false);
@@ -92,7 +99,9 @@ function fillNavbar(){
         config_array.navbar.forEach((navlink) => {
             nav_li = `
             <li class='menu-li'>
-                <a class='nav-links' href="${navlink.href}">${navlink.txt}</a>
+                <p>
+                    <a class='nav-links' href="${navlink.href}">${navlink.txt}</a>
+                </p>
             </li>
             `;
             nav_ul.innerHTML += nav_li;
