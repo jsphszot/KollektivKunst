@@ -34,8 +34,12 @@ function gridLines(sense=1) {
     
     
     background(0);
-    stroke(255);
-    strokeWeight(1);
+    // stroke(255);
+    
+    stroke(Math.random()*255, Math.random()*255, Math.random()*255);
+    // // [Math.random()*255,Math.random()*60,Math.random()*255, Math.random()*150]) // flor de jamaica
+    // stroke([Math.random()*255,Math.random()*60,Math.random()*255]); //, Math.random()*150]) // flor de jamaica);
+    strokeWeight(0.5);
 
     // divcat=Math.random()*50;
     divcatx=5;
@@ -47,6 +51,6 @@ function gridLines(sense=1) {
         line(0,0, width, height);
     }
     rotx += 0.008;
-    console.log(rotx)
+    // console.log(rotx)
 }
 
