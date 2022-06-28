@@ -1,9 +1,10 @@
 function windSize() {
     // get navbar height to include in canvas H calc
     var navH = document.getElementById("navbar").clientHeight;
+    var mqBH = document.getElementById("marquee-bottom").clientHeight;
     // // // get and return client W and H
     var windW = document.documentElement.clientWidth;
-    var windH = document.documentElement.clientHeight-navH;
+    var windH = document.documentElement.clientHeight-navH-mqBH;
     return [windW, windH]
 };
 function canvasFitter(){
