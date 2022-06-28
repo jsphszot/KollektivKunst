@@ -6,7 +6,7 @@
 
 p5.disableFriendlyErrors = true; // disables FES
 
-let bckg_alpha = 70;
+let bckg_alpha = 50;
 
 let rad = 0.5;
 let nperiod = 7.0;
@@ -20,7 +20,7 @@ let shapes = 5;
 // let tl = 0;
 // let tc = 0;
 
-let tc_array = Array(2).fill().map(()=> 0);
+let tc_array = Array(3).fill().map(()=> 0);
 // console.log(tc_array)
 
 function setup() {
@@ -40,8 +40,9 @@ function draw() {
 function smokeyShapes(shapes) {
     clear();
     // smokeyLine();
-    smokeyCircle(0, 100, r_adj=0.8, tc_inc=-0.1);
-    smokeyCircle(1, 100, r_adj=0.5 , tc_inc=0.1);
+    smokeyCircle(0,sw=1, 50, r_adj=1.2, tc_inc=0.2);
+    smokeyCircle(1,sw=1.5, 100, r_adj=0.8, tc_inc=-0.1);
+    smokeyCircle(2,sw=2, 100, r_adj=0.5 , tc_inc=0.1);
     // halfline();
 
 }
@@ -75,18 +76,20 @@ function smokeyLine(y=height/2, seed=100, tl_inc=-0.015) {
 
 }
 
-function smokeyCircle(z, seed, r_adj, tc_inc=-0.1, x0=width/2, y0=height/2) {
+function smokeyCircle(z, sw,seed, r_adj, tc_inc=-0.1, x0=width/2, y0=height/2) {
 
     // clear();
     // background([[0]*3, bckg_alpha]);
     noFill();
     stroke(255, bckg_alpha); // white
+    strokeWeight(sw);
     // translate(width/2, height/2);
     // let m = width*w_mult;
     let pi_splits = TWO_PI/(15000);
     let r = 0.5*Math.min(width, height)*r_adj;
     let tc = tc_array[z];
-    for (let a=0; a<=TWO_PI; a+=pi_splits) {
+    // beginShape();
+    for (let a=0; a<=TWO_PI*1.05; a+=pi_splits) {
         let p = a;
         // let x = map(p*(width), 0,width, -xamp, width+xamp)*cos(a);
         let noise_x = rad*cos(TWO_PI*(nperiod*p+tc));
@@ -96,8 +99,10 @@ function smokeyCircle(z, seed, r_adj, tc_inc=-0.1, x0=width/2, y0=height/2) {
         let x = r*cos(a)+dx;
         let y = r*sin(a)+dy;
         point(x0+x, y0+y);
+        // curveVertex(x0+x, y0+y);
 
     }
+    // endShape(CLOSE)
     // tc += tc_inc;
     tc_array[z] += tc_inc;
 
