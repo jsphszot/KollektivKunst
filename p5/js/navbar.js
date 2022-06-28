@@ -33,7 +33,7 @@ function OpenM() {
     // console.log(menu_button.offsetHeight)
     // console.log(navbar.offsetHeight)
     // get menu button height, and include in calculation to get height for each menu item
-    var menu_minus_button_h = 100*(navbar.offsetHeight-menu_button.offsetHeight)/navbar.offsetHeight;
+    var menu_minus_button_h = 95*(navbar.offsetHeight-menu_button.offsetHeight)/navbar.offsetHeight;
     var menu_item_vh = menu_minus_button_h/(menu_li.length+0) + "vh";
     // console.log(Math.round(menu_minus_button_h))
     // menu_li.forEach(set_a);
