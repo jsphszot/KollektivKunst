@@ -4,7 +4,7 @@ function windSize() {
     var mqBH = document.getElementById("marquee-bottom").clientHeight;
     // // // get and return client W and H
     var windW = document.documentElement.clientWidth;
-    var windH = document.documentElement.clientHeight-navH-mqBH;
+    var windH = document.documentElement.clientHeight-(navH+mqBH);
     return [windW, windH]
 };
 function canvasFitter(){

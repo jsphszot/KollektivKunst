@@ -12,7 +12,7 @@ let rad = 0.5;
 let nperiod = 7.0;
 let freq = 4;
 let xamp = 200;
-let yamp = 90;
+let yamp = 150;
 
 let w_mult=2.5;
 let shapes = 5;
@@ -40,9 +40,9 @@ function draw() {
 function smokeyShapes(shapes) {
     clear();
     // smokeyLine();
-    smokeyCircle(0,sw=1, 50, r_adj=1.2, tc_inc=0.2);
-    smokeyCircle(1,sw=1.5, 100, r_adj=0.8, tc_inc=-0.1);
-    smokeyCircle(2,sw=2, 100, r_adj=0.5 , tc_inc=0.1);
+    // smokeyCircle(0,sw=1, 50, r_adj=1.2, tc_inc=0.2);
+    smokeyCircle(1,sw=2.5, 100, r_adj=0.8, tc_inc=-0.1);
+    // smokeyCircle(2,sw=2, 100, r_adj=0.5 , tc_inc=0.1);
     // halfline();
 
 }
@@ -89,7 +89,7 @@ function smokeyCircle(z, sw,seed, r_adj, tc_inc=-0.1, x0=width/2, y0=height/2) {
     let r = 0.5*Math.min(width, height)*r_adj;
     let tc = tc_array[z];
     // beginShape();
-    for (let a=0; a<=TWO_PI*1.05; a+=pi_splits) {
+    for (let a=0; a<=TWO_PI*1.0; a+=pi_splits) {
         let p = a;
         // let x = map(p*(width), 0,width, -xamp, width+xamp)*cos(a);
         let noise_x = rad*cos(TWO_PI*(nperiod*p+tc));
