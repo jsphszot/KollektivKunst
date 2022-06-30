@@ -40,9 +40,9 @@ function draw() {
 function smokeyShapes(shapes) {
     clear();
     // smokeyLine();
-    // smokeyCircle(0,sw=1, 50, r_adj=1.2, tc_inc=0.2);
+    smokeyCircle(0,sw=1, 50, r_adj=1.2, tc_inc=0.2);
     smokeyCircle(1,sw=2.5, 100, r_adj=0.8, tc_inc=-0.1);
-    // smokeyCircle(2,sw=2, 100, r_adj=0.5 , tc_inc=0.1);
+    smokeyCircle(2,sw=2, 100, r_adj=0.5 , tc_inc=0.1);
     // halfline();
 
 }
