@@ -16,3 +16,27 @@ function canvasFitter(){
     main.style.width=wh[0]+'px';
     main.style.height=wh[1]+'px';
 };
+
+// load random file
+let rf_script = document.createElement("script");
+const script_list = [
+//     "cnv/10PRINT.js",
+//     "cnv/sketch.js",
+    "cnv/cgol.js",
+//     "cnv/floxk.js",
+//     "cnv/video.js",
+    "cnv/PlaceresDesconocides.js",
+    "cnv/unknownpleasures.js",
+    "cnv/rotatingline.js",
+    "cnv/blueje.js",
+//     "cnv/smokeyImage.js",
+//     "cnv/grid.js",
+//     "cnv/kaleidoscope.js",
+];
+function random_item(items) {
+    // https://www.w3resource.com/javascript-exercises/javascript-array-exercise-35.php
+    return items[Math.floor(Math.random()*items.length)];
+}
+var script_path = random_item(script_list);
+rf_script.setAttribute("src", script_path);
+document.body.appendChild(rf_script);
